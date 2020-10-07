@@ -1,40 +1,44 @@
 import { makeStyles } from '@material-ui/styles';
 
-const centeredStylesObj = {
-  display:'flex',
+const centeredStyleObj = {
+  display: 'flex',
   alignItems: 'center',
   justifyContent: 'center'
-
 }
 
-export default makeStyles ({
+export default makeStyles({
   container: {
-    heigth:'100vh',
+    height: '100vh',
     flexDirection: 'column',
-    ...centeredStylesObj
+    ...centeredStyleObj
   },
-
-  cardContainer :{
-    flexDirection:'column',
-    width: '400',
-    height: '200',
+  cardContainer: {
+    flexDirection: 'column',
+    width: 400,
+    height: 200,
     padding: '2rem',
-    ...centeredStylesObj
+    ...centeredStyleObj
   },
-  title:{
+  title: {
+    fontFamily: "Dosis, sans-serif",
     fontSize: '4rem'
   },
-  titleGridContainer:{
-    ...centeredStylesObj
+  titleGridContainer: {
+    ...centeredStyleObj
   },
-  textFieldSearch:{
+  textFieldSearch: {
     width: '90%'
   },
-  searchButton:{
-    marginLeft:'.5em'
+  moviesIcon: {
+    fontSize: 70
   },
-  movieIcon:{
-    fontSize: '4rem'
+  searchButton: {
+    marginLeft: '.5rem'
+  },
+  progressContainer: {
+    marginLeft: '.5rem'
+  },
+  buttonsContainer: {
+    marginTop: '.5rem'
   }
-
 });
