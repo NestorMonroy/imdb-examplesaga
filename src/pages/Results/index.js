@@ -4,31 +4,32 @@ import { Container, CircularProgress } from '@material-ui/core'
 import queryString from 'query-string';
 
 import { searchMovie } from '../../redux/actions/search'
+import { movieResults, isSearchingLoading } from '../../redux/selectors';
+import MovieResult from '../../components/MovieResult';
 
-import { movieResults, isSearchLoading } from '../../redux/selectors';
-import MovieResult  from '../../components/MovieResult';
 
-
-export default ({location}) => {
+export default ({ location }) => {
   //console.log(queryString.parse(location.search))
 
   const dispatch = useDispatch();
   const movies = useSelector(state => movieResults(state))
-  const isLoading = useSelector(state => isSearchLoading(state) )
+  const isLoading = useSelector(state => isSearchingLoading(state))
+  const [isLooked, setIsLooked] = React.useState(false);
 
-  console.log(movies);
+  //console.log(movies);
 
-  React.useEffect( () => {
-    const {movieName} = queryString.parse(location.search);
+  React.useEffect(() => {
+    const { movieName } = queryString.parse(location.search);
 
-    if(movieName && !movies ){
-      dispatch(searchMovie({movieName}))
+    if (movieName && !isLooked) {
+      setIsLooked(true);
+      dispatch(searchMovie({ movieName }))
     }
   });
 
   const renderMovies = () => {
-    if(movies) {
-      return movies.map((value, index)  => <MovieResult key={index} {...value} /> )
+    if (movies) {
+      return movies.map((value, index) => <MovieResult key={index} {...value} />)
     } else if (isLoading) {
       return <CircularProgress size={100} color="primary" />
     }
@@ -36,7 +37,7 @@ export default ({location}) => {
     return <div />;
   }
 
-  return(
+  return (
     <Container>
       {renderMovies()}
     </Container>
